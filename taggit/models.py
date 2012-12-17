@@ -2,7 +2,10 @@ import django
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.generic import GenericForeignKey
 from django.db import models, IntegrityError, transaction
-from django.template.defaultfilters import slugify as default_slugify
+try:
+    from pytils.translit import slugify as default_slugify
+except ImportError:
+    from django.template.defaultfilters import slugify as default_slugify
 from django.utils.translation import ugettext_lazy as _, ugettext
 
 
